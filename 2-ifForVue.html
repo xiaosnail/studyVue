@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>if_for</title>
+</head>
+<body>
+    <div id="app">
+        <!-- if  -->
+        <p v-if="isTrue == 1 && message == 'haha'">你看到我了</p>
+        <p v-else-if="isTrue == 2">O M G ! 你竟然答对了第二个</p>
+        <p v-else>都打错啦~ 大笨蛋!</p>
+        <!-- for -->
+        <table border=1>
+            <tr>
+                <th>姓名</th>
+                <th>性别</th>
+                <th>年龄</th>
+                <th>学校</th>
+            </tr>
+            <tr v-for="item in list">
+                <td>{{item.name}}</td>
+                <td>{{item.sex}}</td>
+                <td>{{item.age}}</td>
+                <td>{{item.school}}</td>
+            </tr>
+        </table>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script>
+    var em = new Vue({
+            el:'#app',
+            data:{
+                isTrue:true,
+                message:'haha',
+                list:[
+                    {name:'张三',sex:'男',age:'22',school:'快乐大学'},
+                    {name:'李四',sex:'女',age:'23',school:'不踢大学'},
+                    {name:'王五',sex:'男',age:'43',school:'踢踢大学'},
+                    {name:'赵六',sex:'女',age:'13',school:'怕踢大学'}
+                ]
+            }
+    })
+</script>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事件绑定-双向绑定</title>
+</head>
+<body>
+    <div id="app">
+        绑定:
+        <span v-bind:title="message">
+                鼠标停留显示文字
+        </span>
+        <a :href="url">点击连接</a>
+        <br>
+        事件绑定: <br>  <!-- 事件绑定 -->
+        <button v-on:click="clickButton">你抓到我,我就让你嘿嘿嘿!</button>
+            <!-- 简写 --> <br> 简写
+           <br> <button @click="clickMsg('打屎你! 你个扑该!')">这次是真的呀~</button>
+           <hr>
+           双向绑定<br>  <!-- 双向绑定 -->  
+        <!-- 双向绑定 就是在h5标签上绑定上字段, (标签发生变化,字段值也会发生变化) ,(字段值发生变化,标签也会跟着发生变化) -->
+        文本框:<textarea name="" id="" cols="30" rows="10" v-model='message'>{{message}}</textarea>{{message}} <br>
+        单选框: 
+            <input type="radio" name='isSex' id='' value='男' v-model='isSex'>男
+            <input type="radio" name='isSex' id='' value='女' v-model='isSex'>女
+            选中了谁: {{isSex}} <br>
+        下拉框:
+        <select name="" id='' v-model='selected' >
+            <option value="" disabled>--请选择--</option>
+            <option v-for="(item,index) in selectList" :value="item.id"     >{{item.name }}</option>
+        </select>
+        选中了{{selected}}
+        
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script>
+    var em = new Vue({
+        el:'#app',
+        data:{
+            message:'Hello 啊! vue',
+            isSex:'女',
+            selected:'4',
+            url:'http://www.baidu.com',
+            selectList:[
+                {id:'1',name:'张三'},
+                {id:'2',name:'李四'},
+                {id:'3',name:'王五'},
+                {id:'4',name:'赵六'},
+                {id:'5',name:'周⑦'},
+            ]
+        },
+        methods:{//事件方法关键字
+            clickButton:function(event){//点击事件方法
+                alert('你在想屁吃!鬼!');
+                if(event){//event 是原始DOM事件,只有没有传参的时候才用得到
+                    alert(event.target.tagName)//显示(被点击的)标签名称
+                }
+            },
+            clickMsg:function(msg){//简写点击事件方法
+                alert(msg);
+                
+            }
+        }
+    })
+</script>
+</html>

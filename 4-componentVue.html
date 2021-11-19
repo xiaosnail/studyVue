@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue 的组件</title>
+</head>
+<body>
+    <div id='app'>
+        vue的组件是可以复用的,我们开发过程中我们可以吧重复的功能封装成组件,这样我们就可以重复使用了
+            <!-- 组件是可重复用的Vue实例 -->
+            <!-- 每一个组件都是不一样的,互不干预 -->
+        <!-- 组件基础应用 -->
+        <com-button></com-button>
+        <com-button></com-button>
+    
+        <hr>
+        <!-- 属性在组件中的应用 -->
+        <com-bind ss='第一个title' urls='https://www.baidu.com'></com-bind>
+        <com-bind ss='第二个title' urls='http://www.baidu.com'></com-bind>
+        <hr>
+        <!-- for在组件中的应用 -->
+        //首先要把组件定义属性和值绑定一下,要不然展示不了
+        <com-for v-for='item in list' :val='item' :key='item.id'></com-for>
+        <com-for v-for='item in list' :val='item' :key='item.id'></com-for>
+        <hr>
+        <!-- 事件在组件中的应用 -->
+        <com-click v-on:clicknoww='clickFun'></com-click>
+        <com-click v-on:clicknoww='clickFun'></com-click>
+        <hr>
+        <!-- if 在组件中使用 -->
+        <com-if v-if='isTrue == true' show='展示'></com-if>
+    </div>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script>
+    //组件关键字 component
+    Vue.component('com-button',{
+        data:function(){
+            return {
+                count:0
+            }
+        },
+        //定义组件模板
+        template:'<li>'+
+            '<button v-on:click="count++">点击一次相加{{count}}</button>'+
+            '</li>'
+    })
+    //组件属性
+    Vue.component('com-bind',{
+        //data 这个必须是一个函数,通过return返回变量,下面模板就可以用了,如果Vue没有这条规则,那么就会印象到其它组件.这样可以确保每个组件的是不可重复的.
+        data:function(){
+          return{
+            count:0
+          }  
+        },
+        //为组件定义属性,在组件模板中可以进行应用
+        props:['ss','urls'],
+        //定义组件模板
+        template:'<li>'+
+            '<button v-on:click="count++"><a  :href="urls">点击</a>{{ss}}点击一次相加{{count}}</button>'+
+            '</li>'
+    })
+    //组件循环
+    Vue.component('com-for',{
+        data:function(){
+            return {
+                count:0
+            }
+        },
+        props:['val'],
+        //定义组件模板
+        template:'<li>{{val.name}}</li>'
+    })
+    //组件事件
+    Vue.component('com-click',{
+        data:function(){
+            return {
+                count:0
+            }
+        },
+        props:['val'],
+        //定义组件模板
+        template:'<li>'+
+            '<button v-on:click="comclick()">点击一次相加{{count}}</button>'+
+            '</li>',
+        methods:{
+            comclick:function(){
+                this.count++ //count ++
+                this.$emit('clicknoww',this.count)//定义clicknoww事件(定义好之后在模板中可以直接使用),要传的值
+            }
+        }
+    }),
+    Vue.component('com-if',{
+        data:function(){
+            return {
+                count:0
+            }
+        },
+        props:['show'],
+        //定义组件模板
+        template:'<li >{{show}}</li>'
+    })
+    var em = new Vue({
+        el:'#app',
+        data:{
+            message:'Hello 啊! vue',
+            isTrue:true,
+            list:[
+                    {name:'张三',sex:'男',age:'22',school:'快乐大学'},
+                    {name:'李四',sex:'女',age:'23',school:'不踢大学'},
+                    {name:'王五',sex:'男',age:'43',school:'踢踢大学'},
+                    {name:'赵六',sex:'女',age:'13',school:'怕踢大学'}
+                ]
+        },
+        methods:{
+            clickFun:function(msg){
+                alert(msg);
+            }
+        }
+    })
+</script>
+</html>
