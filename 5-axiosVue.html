@@ -7,19 +7,52 @@
     <title>axios 与后端通信</title>
 </head>
 <body>
-
+    <div id='app'>
+        利用axios 想后端通信
+        <hr>
+        <table border='1' style='margin:auto'>
+            <h4>后端数据展示</h4>
+            <tr>
+                <th>id</th>
+                <th>title</th>
+                <th>time</th>
+                <th>json</th>
+            </tr>
+            <tr v-for='val in tablelist'>
+                <td>{{val.id}}</td>
+                <td>{{val.title}}</td>
+                <td>{{val.date_time}}</td>
+                <td>{{val.json_date}}</td>
+            </tr>
+        </table>
+    </div>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://unpkg.zhimg.com/axios/dist/axios.min.js"></script>,
 <script>
-    //axios 是链式操作
-    axios.get('http://www.lumenapi.com/show').then(response=>(this.info = response.data))
-
-    // var em = new Vue({
-    //     el:'#app',
-    //     data:{
-    //         message:'Hello 啊! vue'
-    //     }
-    // })
+    var em = new Vue({
+        el:'#app',
+        data:{
+            message:'Hello 啊! vue',
+            tablelist:[
+                {"id":1,"title":"emmmm","date_time":"2021-04-14","json_date":"{\"afa\": 1}"}, 
+            ]
+        },
+        methods:{
+            getHostData:function(){
+                //axios 是链式操作
+                axios.get('http://www.lumenapi.com/show').then(res=>{
+                    if( res.data.code == '0001'){
+                        this.tablelist=res.data.data;
+                    }else{
+                        alert("暂无数据");
+                    }
+                })
+            }
+        },
+        mounted:function(){
+            this.getHostData();
+        }
+    })
 </script>
 </html>
