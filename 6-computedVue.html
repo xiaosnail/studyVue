@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue 的计算属性</title>
+</head>
+<body>
+    <div id="app">
+        {{message}}
+        <hr>    
+        计算方法 :{{showTime()}}
+        <br>    
+        计算属性 : {{dataTime}}//属性不能带括号
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script src="https://unpkg.zhimg.com/axios/dist/axios.min.js"></script>
+<script>
+    var vm = new Vue({
+                    el:'#app',
+                    data:{
+                        message:'Vue 的计算属性',
+                    },
+                    methods:{//自定义方法
+                        showTime:function(){
+                            return Date.now()
+                        }
+                    },
+                    computed:{//计算属性 页面不刷新,就会把值存起来,
+                        dataTime:function(){
+                            this.message;//只要更新了message内容 计算属性就会发生变化
+                            return Date.now();
+                        }
+                    }
+                })
+</script>
+
+</html>

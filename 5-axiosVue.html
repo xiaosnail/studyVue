@@ -38,7 +38,7 @@
                 {"id":1,"title":"emmmm","date_time":"2021-04-14","json_date":"{\"afa\": 1}"}, 
             ]
         },
-        methods:{
+        methods:{//自定义方法
             getHostData:function(){
                 //axios 是链式操作
                 axios.get('http://www.lumenapi.com/show').then(res=>{
@@ -50,7 +50,7 @@
                 })
             }
         },
-        mounted:function(){
+        mounted:function(){//vue的钩子函数(在页面渲染完后自动执行里面内容)
             this.getHostData();
         }
     })
