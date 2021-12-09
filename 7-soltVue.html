@@ -10,32 +10,52 @@
     <div id='app'>
         <p>{{message}}</p>
         <tudo>
-            <tudo-title></tudo-title>
-            <tudo-data></tudo-data>
+            <tudo-title slot="tit" :title='tudoTitle'></tudo-title>
+            <tudo-data slot='dat' v-for='(item,id) in tudoItem' :data='item' :id='id' :key="item" @rems='dataRem(id)'></tudo-data>
         </tudo>
     </div>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 <script>
+    //new vue 和Vue.xxx 是两个不同的Vue实例
     Vue.component('tudo',{
+        //slot 写name 是为了和下面tudo-title,tudo-data绑定.
         template:"<div>\
-                 <slot></slot>\
+                 <slot name='tit'></slot>\
                  <ul>\
-                    <slot></slot>\
+                    <slot name='dat'></slot>\
                  </ul>\
                 </div>"
     });
     Vue.component("tudo-title",{
-        template:"<div>标题</div>"
-    });
+        props:['title'],
+        template:"<div>{{title}}</div>"
+    }); 
     Vue.component("tudo-data",{
-        template:"<li>vue</li>"
+        props:['data','id'],
+        //绑定事件只能绑定当前组件的方法
+        template:"<li>{{id}}{{data}} &nbsp;<button @click='slotRem(id)'>删除</button></li>",
+        methods:{//在插件里面也可以写自定义方法
+            slotRem:function(val){
+                //this.$emit 是当前vue实例定义 自定义事件 并传输数据 
+                 this.$emit('rems',val);
+            }
+        }
     });
     var vm = new Vue({
             el:'#app',
             data:{
                 message:'插槽的使用和自定义事件分发',
-                
+                tudoTitle:'>滚滚长江东逝水<',
+                tudoItem:['其实不用插槽也可以做,vue使用插槽slot让vue专注做系统','程三郎剑南道演义','芜湖哀哉']
+            },
+            methods:{
+                dataRem:function(index){
+                    console.log('已经删除了'+this.tudoItem[index]+'ok');
+                    //splice() 是修改Array的万能方法
+                    //this代表当前实例,可以拿到data里面数据
+                    this.tudoItem.splice(index,1);
+                }
             }
     });
 </script>

@@ -16,7 +16,6 @@
     </div>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
-<script src="https://unpkg.zhimg.com/axios/dist/axios.min.js"></script>
 <script>
     var vm = new Vue({
                     el:'#app',
@@ -28,7 +27,7 @@
                             return Date.now()
                         }
                     },
-                    computed:{//计算属性 页面不刷新,就会把值存起来,
+                    computed:{//计算属性 页面不刷新,就会把值存起来,当修改message值的时候就会发生改变
                         dataTime:function(){
                             this.message;//只要更新了message内容 计算属性就会发生变化
                             return Date.now();
