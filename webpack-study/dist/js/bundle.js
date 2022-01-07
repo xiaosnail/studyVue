@@ -1,0 +1,1 @@
+(()=>{var r,n={874:(r,n)=>{n.fun=function(){document.write("<h1>exports中的hello方法!~</h1>")},n.fun1=function(){alert("昂打得过")}}},t={};(r=function r(e){var o=t[e];if(void 0!==o)return o.exports;var u=t[e]={exports:{}};return n[e](u,u.exports,r),u.exports}(874)).fun(),r.fun1()})();
