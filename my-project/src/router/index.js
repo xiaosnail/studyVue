@@ -5,8 +5,8 @@ import Vue from 'vue';
 import Router from 'vue-router';
 
 //导入页面
-import Content from '../components/Content'
-import Home from '../components/Home'
+import Content from '../components/Content';
+import Home from '../components/Home';
 //安装路由
 Vue.use(Router);
 

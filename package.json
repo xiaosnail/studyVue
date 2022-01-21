@@ -1,0 +1,9 @@
+{
+  "devDependencies": {
+    "vue-router": "^3.5.3"
+  },
+  "dependencies": {
+    "init": "^0.1.2",
+    "my-vue-element": "^0.1.7"
+  }
+}

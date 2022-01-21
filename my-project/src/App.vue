@@ -2,7 +2,7 @@
   <div id="app">
     <h1>Vue-Router</h1>
     <router-link to="./">主页</router-link>
-    <router-link to="Home">首页</router-link>
+    <router-link to="home">首页</router-link>
     <router-link to="Content">内容页</router-link>
     <router-view></router-view>
   </div>
