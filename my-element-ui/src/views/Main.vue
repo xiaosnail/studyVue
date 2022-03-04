@@ -9,7 +9,9 @@
             </template>
             <el-menu-item-group>
               <el-menu-item index="1-1">
-                <router-link to="/user/list">用户列表</router-link>
+                <router-link to="{name:'Profile',parms:{id: 1}}"
+                  >个人信息</router-link
+                >
               </el-menu-item>
               <el-menu-item index="1-2">
                 <!--插入的地方-->

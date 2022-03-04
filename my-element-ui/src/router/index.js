@@ -18,6 +18,7 @@ export default new Router({
       children: [
         {
           path: '/user/profile/:id',
+          name: Profile,
           component: Profile,
         },
         {
