@@ -1,6 +1,6 @@
-# my-vue-element
+# my-element-ui
 
-> vue+element-test
+> 学习vue element-ui
 
 ## Build Setup
 
