@@ -9,13 +9,21 @@
             </template>
             <el-menu-item-group>
               <el-menu-item index="1-1">
-                <router-link to="{name:'Profile',parms:{id: 1}}"
+                <router-link :to="{ name: 'Profile', params: { id: 1 } }"
                   >个人信息</router-link
                 >
               </el-menu-item>
               <el-menu-item index="1-2">
                 <!--插入的地方-->
-                <router-link to="/user/list">用户列表</router-link>
+                <router-link
+                  :to="{ name: 'List', params: { id: 2, name: '张三' } }"
+                  >用户列表</router-link
+                >
+              </el-menu-item>
+
+              <el-menu-item index="1-3">
+                <!--插入的地方-->
+                <router-link to="/goHome">回到首页</router-link>
               </el-menu-item>
             </el-menu-item-group>
           </el-submenu>
@@ -40,6 +48,7 @@
               <el-dropdown-item>退出登录</el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
+          <!-- <span>{{ name }}</span> -->
         </el-header>
         <el-main>
           <!--在这里展示视图-->
@@ -51,6 +60,7 @@
 </template>
 <script>
 export default {
+  // props: ["name"],
   name: "Main",
 };
 </script>

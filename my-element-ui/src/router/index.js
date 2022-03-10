@@ -5,26 +5,31 @@ import Main from '@/views/Main'
 import Login from '@/views/Login'
 import List from '@/views/user/List'
 import Profile from '@/views/user/Profile'
+import NotFound from '@/views/NotFound'
 
 
 Vue.use(Router)
 
 export default new Router({
+
+  mode: 'history',
   routes: [
     {
       path: '/main',
       name: 'Main',
       component: Main,
+      // props: true,
       children: [
         {
           path: '/user/profile/:id',
-          name: Profile,
+          name: 'Profile',
           component: Profile,
         },
         {
-          path: '/user/list',
+          path: '/user/list/:id/:name',
+          name: 'List',
           component: List,
-          props: ['id']
+          props: true
         }
       ]
     },
@@ -32,6 +37,14 @@ export default new Router({
       path: '/Login',
       name: 'Login',
       component: Login
+    },
+    {
+      path: '/goHome',
+      redirect: Main,
+    },
+    {
+      path: '*',
+      component: NotFound
     }
   ]
 })
